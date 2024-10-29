@@ -18,7 +18,7 @@ This repository provides a comprehensive setup for deploying an Apache Airflow c
 
 ## Project Structure
 
-\`\`\`plaintext
+```plaintext
 .
 ├── docker-compose.yml         # Main Docker Compose file for Airflow services
 ├── init-swarm.sh              # Script to initialize Docker Swarm and deploy Airflow stack
@@ -28,32 +28,32 @@ This repository provides a comprehensive setup for deploying an Apache Airflow c
 ├── dags/                      # Directory for Airflow DAGs
 ├── logs/                      # Directory for Airflow logs
 └── plugins/                   # Directory for Airflow plugins
-\`\`\`
+```
 
 ## Setup Guide
 
 ### 1. Clone the Repository
-\`\`\`bash
+```bash
 git clone https://github.com/alfianpr/dp-airflow.git
 cd dp-airflow
-\`\`\`
+```
 
 ### 2. Make Scripts Executable
-\`\`\`bash
+```bash
 chmod +x init-swarm.sh add-worker.sh
-\`\`\`
+```
 
 ### 3. Initialize Docker Swarm and Deploy Airflow Stack
 Run the following command on the manager node:
-\`\`\`bash
+```bash
 ./init-swarm.sh
-\`\`\`
+```
 
 This script performs the following actions:
 
 - Initializes Docker Swarm
 - Creates necessary directories
-- Generates a \`.env\` file with a Fernet key and webserver secret key
+- Generates a `.env` file with a Fernet key and webserver secret key
 - Deploys the Airflow stack
 
 After the setup completes, access the services at:
@@ -63,16 +63,16 @@ After the setup completes, access the services at:
 
 ### 4. Add Worker Nodes to the Swarm
 On each worker node, use the following command, replacing \`<manager_ip>\` and \`<join_token>\` with the IP address of the manager and the join token provided by the \`init-swarm.sh\` script:
-\`\`\`bash
+```bash
 ./add-worker.sh <manager_ip> <join_token>
-\`\`\`
+```
 
 ## Environment Configuration
 
-The \`.env\` file contains the following environment variables:
+The `.env` file contains the following environment variables:
 
-- \`FERNET_KEY\`: Encryption key for sensitive data
-- \`WEBSERVER_SECRET_KEY\`: Secret key for web server authentication
+- `FERNET_KEY`: Encryption key for sensitive data
+- `WEBSERVER_SECRET_KEY`: Secret key for web server authentication
 
 These variables are generated automatically during initialization.
 
@@ -85,8 +85,8 @@ The worker service is set to \`mode: global\`, meaning it automatically runs on 
 
 ## Default Credentials
 
-- Username: \`admin\`
-- Password: \`admin\`
+- Username: `admin`
+- Password: `admin`
 
 ## Additional Notes
 
@@ -95,7 +95,3 @@ The worker service is set to \`mode: global\`, meaning it automatically runs on 
 3. **Monitoring & Logging**: Consider setting up external monitoring solutions for enhanced observability.
 
 ---
-
-## License
-
-This project is licensed under the MIT License.
